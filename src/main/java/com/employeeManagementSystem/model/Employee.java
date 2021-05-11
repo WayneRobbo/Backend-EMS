@@ -2,10 +2,12 @@ package com.employeeManagementSystem.model;
 
 import javax.persistence.*;
 
+// Sql Database entity
 @Entity
 @Table(name= "employees")
 public class Employee {
 
+    //To create a unique identity for employee database
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
