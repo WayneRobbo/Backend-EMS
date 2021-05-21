@@ -37,4 +37,20 @@ public class ShiftController {
                 .orElseThrow(() -> new ResourceNotFoundException("Shift not found with id:" + id));
         return ResponseEntity.ok(shift);
     }
+
+    //update shift
+    @PutMapping("/shifts/{id}")
+    public ResponseEntity<Shift> updateShift(@PathVariable Long id, @RequestBody Shift shiftDetails) {
+
+        Shift shift= shiftRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Shift not found with id:" + id));
+
+        shift.setFirstName(shiftDetails.getFirstName());
+        shift.setSecondName(shiftDetails.getSecondName());
+        shift.setEmail(shiftDetails.getEmail());
+        shift.setShiftDate(shiftDetails.getShiftDate());
+
+        Shift updatatedShift= shiftRepository.save(shift);
+        return ResponseEntity.ok(updatatedShift);
+    }
 }
